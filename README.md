@@ -11,3 +11,7 @@ To run this script, save it as a Python file and run it in your terminal or comm
 Note that the script assumes that the rectangles are placed side by side and do not overlap. If the rectangles overlap, the script may detect them as a single contour and not as separate rectangles.
 
 Also, the color detection may not be perfect in all lighting conditions. You may need to adjust the lower and upper bounds for each color to get better results.
+
+## Install OpenCV on Raspberry Pi
+
+https://raspberrypi-guide.github.io/programming/install-opencv

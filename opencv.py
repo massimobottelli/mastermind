@@ -13,6 +13,9 @@ colors = {
     'purple': ((125, 50, 50), (150, 255, 255))
 }
 
+# Initialize the detected colors array
+detected_colors = []
+
 # Loop through each frame from the webcam
 while True:
     # Read the frame
@@ -44,8 +47,7 @@ while True:
                 cv2.drawContours(frame, [approx], -1, (0, 255, 0), 2)
                 
                 # Get the color of the rectangle
-                font = cv2.FONT_HERSHEY_SIMPLEX
-                cv2.putText(frame, color, tuple(approx[0][0]), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
+                detected_colors.append(color)
 
     # Show the frame
     cv2.imshow('frame', frame)
@@ -53,7 +55,13 @@ while True:
     # Check for key presses
     if cv2.waitKey(1) == ord('q'):
         break
-        
+
 # Release the webcam and close the preview window
 cap.release()
 cv2.destroyAllWindows()
+
+# Check if exactly six colors were detected
+if len(detected_colors) == 6:
+    print(detected_colors)
+else:
+    print("Error: Detected %d colors instead of 6" % len(detected_colors))

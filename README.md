@@ -15,3 +15,7 @@ Also, the color detection may not be perfect in all lighting conditions. You may
 ## Install OpenCV on Raspberry Pi
 
 https://raspberrypi-guide.github.io/programming/install-opencv
+
+## Accessing the Raspberry Pi Camera with OpenCV and Python
+
+https://pyimagesearch.com/2015/03/30/accessing-the-raspberry-pi-camera-with-opencv-and-python/

@@ -5,7 +5,7 @@ cap = cv2.VideoCapture(0)
 
 # Define the lower and upper bounds for each color in HSV format
 colors = {
-    'red': ((0, 100, 100), (10, 255, 255)),
+    'red': ((0, 100, 100), (20, 255, 255)),
     'green': ((36, 25, 25), (86, 255, 255)),
     'blue': ((100, 50, 50), (130, 255, 255)),
     'yellow': ((20, 100, 100), (30, 255, 255)),
@@ -52,12 +52,13 @@ while True:
                     x, y, w, h = cv2.boundingRect(approx)
                     cv2.putText(frame, color, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
-                # Get the color of the rectangle
-                detected_colors.append(color)
+                    # Get the color of the rectangle
+                    if color not in detected_colors:
+                        detected_colors.append(color)
 
     # Show the frame
     frame = cv2.resize(frame, (800, 480))
-    cv2.imshow('frame', frame)
+    cv2.imshow('Mastermind', frame)
 
     # Check for key presses
     if cv2.waitKey(1) == ord('q'):
@@ -67,8 +68,6 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-# Check if exactly four colors were detected
-if len(detected_colors) == 4:
-    print(detected_colors)
-else:
-    print("Error: Detected %d colors instead of 6" % len(detected_colors))
+
+# Print the color array
+print(detected_colors)

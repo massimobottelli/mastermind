@@ -5,12 +5,11 @@ cap = cv2.VideoCapture(0)
 
 # Define the lower and upper bounds for each color in HSV format
 colors = {
-    'red': ((0, 100, 100), (20, 255, 255)),
-    'green': ((36, 25, 25), (86, 255, 255)),
-    'blue': ((100, 50, 50), (130, 255, 255)),
-    'yellow': ((20, 100, 100), (30, 255, 255)),
-    'orange': ((10, 100, 100), (20, 255, 255)),
-    'purple': ((125, 50, 50), (150, 255, 255))
+    'red': ((0, 100, 100), (10, 255, 210)),
+    'yellow': ((15, 100, 100), (25, 255, 255)),
+    'blue': ((95, 150, 150), (115, 255, 255)),
+    'orange': ((10,150,150), (20,255,250)),
+
 }
 
 # Initialize the detected colors array
@@ -18,6 +17,7 @@ detected_colors = []
 
 # Loop through each frame from the webcam
 while True:
+
     # Read the frame
     ret, frame = cap.read()
 
@@ -45,12 +45,12 @@ while True:
             if len(approx) == 4:
                 # Check if the rectangle is larger than 100x100 pixels
                 x, y, w, h = cv2.boundingRect(approx)
-                if w > 100 and h > 100:
+                if w > 120 and h > 120:
                     # Draw the rectangle on the frame
                     cv2.drawContours(frame, [approx], -1, (255, 0, 0), 2)
                     # Write the color name above the rectangle
                     x, y, w, h = cv2.boundingRect(approx)
-                    cv2.putText(frame, color, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+                    cv2.putText(frame, color, (int(x + w/2 - 20), int(y + h/2)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
                     # Get the color of the rectangle
                     if color not in detected_colors:

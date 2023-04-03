@@ -43,7 +43,7 @@ def read_color():
     return str(color)
 
 # Function to provide feedback to user
-def feedback_flag(flag, dir):
+def feedback_flag(flag):
     flag.run_angle(FLAG_SPEED, FLAG_STEP_ANGLE)
     wait(PAUSE_COLOR)
     flag.run_target(FLAG_SPEED, 0)
@@ -80,13 +80,13 @@ while (score != [1, 1, 1]):
         if user_color == random_colors[i]:
             # Correct color
             print (user_color, "correct color!") #debug
-            feedback_flag (flag1_motor, -1)
+            feedback_flag (flag1_motor)
             score[i] = 1
 
         elif user_color in random_colors:
             # Color present but in different position
             print (user_color, "present in different position") #debug
-            feedback_flag (flag2_motor, 1)
+            feedback_flag (flag2_motor)
 
         else:
             # Color not present
